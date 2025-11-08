@@ -1,4 +1,4 @@
-from Trace.Trace cimport Trace
+from Trace cimport Trace
 
 # copied from Trace.h
 SIZE_MASK = 0xFF

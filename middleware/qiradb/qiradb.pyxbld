@@ -1,6 +1,6 @@
 import os
 def make_ext(modname, pyxfilename):
-  from distutils.extension import Extension
+  from setuptools import Extension
   include_dir = os.path.join(os.path.dirname(pyxfilename), 'Trace')
   return Extension(name=modname,
                    include_dirs=[include_dir],

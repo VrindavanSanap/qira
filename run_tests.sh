@@ -10,18 +10,20 @@ if [ "$1" == "distrib" ] ; then
 fi
 
 source venv/bin/activate
-nosetests -v -s
+pytest -v -s
 
 # integration test
-./qira qira_tests/bin/loop &
-QIRA_PID=$!
-trap "kill $QIRA_PID" EXIT
-echo "qira pid is $QIRA_PID"
-sleep 2
+if [[ "$(uname)" == 'Linux' ]]; then
+  ./qira qira_tests/bin/loop &
+  QIRA_PID=$!
+  trap "kill $QIRA_PID" EXIT
+  echo "qira pid is $QIRA_PID"
+  sleep 2
 
-# replace phantomjs test with this
-#phantomjs qira_tests/load_page.js
-curl http://localhost:3002/ | grep "<title>qira</title>"
+  # replace phantomjs test with this
+  #phantomjs qira_tests/load_page.js
+  curl http://localhost:3002/ | grep "<title>qira</title>"
+fi
 
 echo "tests pass"
 

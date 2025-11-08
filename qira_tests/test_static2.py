@@ -1,4 +1,5 @@
 import sys
+sys.path.append("middleware/")
 sys.path.append("static2/")
 import static2
 
